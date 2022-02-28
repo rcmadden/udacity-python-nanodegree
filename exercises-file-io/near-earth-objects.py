@@ -3,7 +3,7 @@ import json
 
 count = 0
 i = 0
-# CSVInputFile =  '../data/neos.csv'
+
 CSVInputFile =  'data/neos.csv'
 
 with open(CSVInputFile, newline='') as csv_file:
