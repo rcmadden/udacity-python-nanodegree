@@ -8,8 +8,8 @@ CSVInputFile =  'data/neos.csv'
 
 with open(CSVInputFile, newline='') as csv_file:
     reader = csv.DictReader(csv_file)
-
-   #print(reader.fieldnames)
+    print(reader.fieldnames)
+    print('\n')
     for row in reader:
         count +=1
     print('1. How many NEOs are in the neos.csv data set?', count)
