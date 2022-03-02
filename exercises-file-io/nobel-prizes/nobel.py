@@ -1,10 +1,11 @@
 import json
 import helper
 
+
 def load_nobel_prizes(filename='../../data/prize.json'):
     with open(filename) as json_file:
-        data = json.load(json_file)
-    return data
+        return json.load(json_file)
+    
 
 
 def main(year, category):
@@ -14,7 +15,7 @@ def main(year, category):
     if category != None:
         category = category.lower()
 
-    print(category)
+
     for i in range(prizes):
         if data['prizes'][i]['year'] == year and category == None:
             print(data['prizes'][i])
