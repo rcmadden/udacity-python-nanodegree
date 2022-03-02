@@ -1,8 +1,7 @@
 import json
 import helper
 
-
-def load_nobel_prizes(filename='../../../../exercise-data/prize.json'):
+def load_nobel_prizes(filename='../../data/prize.json'):
     with open(filename) as json_file:
         data = json.load(json_file)
     return data
