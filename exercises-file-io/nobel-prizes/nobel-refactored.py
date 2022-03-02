@@ -1,18 +1,13 @@
 import json
 import helper
 
-
-def load_nobel_prizes(filename='../../../../exercise-data/prize.json'):
+def load_nobel_prizes(filename='../../data/prize.json'):
     with open(filename) as json_file:
         return json.load(json_file)
     
-
-
 def main(year, category):
     data = load_nobel_prizes()
     prizes = data['prizes']
-
-    # print(year, category)
 
     for prize in prizes:
         # print(prize)
