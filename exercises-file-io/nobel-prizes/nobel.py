@@ -11,7 +11,7 @@ def load_nobel_prizes(filename='../../data/prize.json'):
 def main(year, category):
     data = load_nobel_prizes()
     prizes = len(data['prizes'])
-    # filter on year and or category
+
     if category != None:
         category = category.lower()
 
@@ -25,13 +25,7 @@ def main(year, category):
 
         elif year == None and data['prizes'][i]['category'] == category:
             print(data['prizes'][i])
-
-
-    #print(len(data['prizes']))
-    #print((data['prizes'][0]).keys()) #dict_keys(['year', 'category', 'laureates'])
-    #print(data['prizes'][0]['year'])
-
-    #print(year, category)
+            
 
 if __name__ == '__main__':
     parser = helper.build_parser()
