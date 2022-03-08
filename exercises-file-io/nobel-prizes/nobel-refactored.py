@@ -3,7 +3,7 @@ from sys import stdout
 from textwrap import indent
 import helper
 
-# def load_nobel_prizes(filename='../../data/prize.json'):
+#def load_nobel_prizes(filename='../../data/prize.json'):
 def load_nobel_prizes(filename='data/prize.json'):
     with open(filename) as json_file:
         return json.load(json_file)
@@ -12,17 +12,50 @@ def load_nobel_prizes(filename='data/prize.json'):
 def main(year, category):
     data = load_nobel_prizes()
     prizes = data['prizes']
+    count = 0
+    laureateCount = 0
 
     # list comprehension
-    prize_list0 = [prize for prize in prizes if prize['year'] == '2021']
-    json.dump(prize_list0, stdout,indent=2)
-    prize_list1 = []
+    '''for prize in prizes:
+        if prize['year'] == year:
+            prize_list.append(prize)
+    '''
+    # prize_list = [prize for prize in prizes if prize['year'] == year]
+    # json.dump(prize_list, stdout,indent=2)
+    # print(len(prize_list), ' Total')
 
-    # looping list
+    if category != None:
+        category = category.lower()
+    
     for prize in prizes:
-        if prize['year'] == '2021':
-            prize_list1.append(prize)
-    json.dump(prize_list1, stdout, indent=2)
+        # check if key in dict
+        if 'laureates' in prize:
+            
+            if prize['year'] == year and category == None:
+                json.dump(prize, stdout,indent=2)
+                count +=1
+            
+            elif prize['year'] == year and prize['category'] == category:
+                json.dump(prize, stdout,indent=2)
+                count +=1
+
+            elif year == None and prize['category'] == category:
+                json.dump(prize, stdout,indent=2)
+                count +=1
+            
+            elif year == None and category == None:
+                while count < 10:
+                    json.dump(prize, stdout,indent=2)
+                    count+=1
+            # print(count, ' Total')
+        
+        # if key not in dict
+        else:
+            laureateCount+=1
+    
+    print('no laureate count: ', laureateCount)
+    print(count, ' Total')
+            
     
     # json_string = json.dumps(data)
     # for prize in prizes:
