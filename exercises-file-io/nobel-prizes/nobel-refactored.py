@@ -3,8 +3,8 @@ from sys import stdout
 from textwrap import indent
 import helper
 
-#def load_nobel_prizes(filename='../../data/prize.json'):
-def load_nobel_prizes(filename='data/prize.json'):
+#def load_nobel_prizes(filename='../../data/prize.json'): # run frorm terminal
+def load_nobel_prizes(filename='data/prize.json'): # run with debugger
     with open(filename) as json_file:
         return json.load(json_file)
 
@@ -28,32 +28,37 @@ def main(year, category):
         category = category.lower()
     
     for prize in prizes:
-        # check if key in dict
-        if 'laureates' in prize:
-            
-            if prize['year'] == year and category == None:
-                json.dump(prize, stdout,indent=2)
-                count +=1
-            
-            elif prize['year'] == year and prize['category'] == category:
-                json.dump(prize, stdout,indent=2)
-                count +=1
-
-            elif year == None and prize['category'] == category:
-                json.dump(prize, stdout,indent=2)
-                count +=1
-            
-            elif year == None and category == None:
-                while count < 10:
-                    json.dump(prize, stdout,indent=2)
-                    count+=1
-            # print(count, ' Total')
+        # skip if key not in dict
+        if 'laureates' not in prize:
+            continue
+        if prize['year'] == year and category == None:
+            # json.dump(prize, stdout,indent=2)
+            print(f"{prize['year']} {prize['category']}")
+            for laureate in prize['laureates']:
+              # print(laureate.get('firstname'), laureate.get('surname'))
+                print(laureate['firstname'], laureate['surname'])     
+            count +=1
+            print('')
         
-        # if key not in dict
-        else:
-            laureateCount+=1
+        elif prize['year'] == year and prize['category'] == category:
+            # json.dump(prize, stdout,indent=2)
+            print(laureate['firstname'], laureate['surname'])
+            count +=1
+            print('')
+
+        elif year == None and prize['category'] == category:
+            # json.dump(prize, stdout,indent=2)
+            print(laureate['firstname'], laureate['surname'])
+            count +=1
+            print('')
+
+        elif year == None and category == None:
+            while count < 10:
+                # json.dump(prize, stdout,indent=2)
+                print(laureate['firstname'], laureate['surname'])
+                count+=1
+                print('')
     
-    print('no laureate count: ', laureateCount)
     print(count, ' Total')
             
     
