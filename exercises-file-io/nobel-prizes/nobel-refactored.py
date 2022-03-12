@@ -32,7 +32,6 @@ def main(year, category):
         if 'laureates' not in prize:
             continue
         if prize['year'] == year and category == None:
-            # json.dump(prize, stdout,indent=2)
             print(f"{prize['year']} {prize['category']}")
             for laureate in prize['laureates']:
               # print(laureate.get('firstname'), laureate.get('surname'))
@@ -41,21 +40,21 @@ def main(year, category):
             print('')
         
         elif prize['year'] == year and prize['category'] == category:
-            # json.dump(prize, stdout,indent=2)
-            print(laureate['firstname'], laureate['surname'])
+            for laureate in prize['laureates']:
+                print(laureate['firstname'], laureate['surname'])
             count +=1
             print('')
 
         elif year == None and prize['category'] == category:
-            # json.dump(prize, stdout,indent=2)
-            print(laureate['firstname'], laureate['surname'])
+            for laureate in prize['laureates']:
+                print(laureate['firstname'], laureate['surname'])
             count +=1
             print('')
 
         elif year == None and category == None:
             while count < 10:
-                # json.dump(prize, stdout,indent=2)
-                print(laureate['firstname'], laureate['surname'])
+                for laureate in prize['laureates']:
+                    print(laureate['firstname'], laureate['surname'])
                 count+=1
                 print('')
     
