@@ -12,8 +12,6 @@ def main(year, category):
     prizes = data['prizes']
     count = 0
 
-    if category != None:
-        category = category.lower()
     
     for prize in prizes:
         # skip if key not in dict
