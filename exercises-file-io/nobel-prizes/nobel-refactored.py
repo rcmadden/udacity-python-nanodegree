@@ -39,16 +39,14 @@ def main(year, category):
                     print(laureate['firstname'], laureate['surname'])
                 count+=1
                 print('')
-        elif not(year == None and category == None):
-            # print the matching year and or category
-            if prize['year'] == year and (category == None or prize['category'] == category) or year == None and prize['category'] == category:
-                print(f"{prize['year']} {prize['category']}")
-                for laureate in prize['laureates']:
-                # print(laureate.get('firstname'), laureate.get('surname'))
-                    print(laureate['firstname'], laureate.get('surname'))     
-                count +=1
-                print('')
-    
+        # filter on mathcing year or category
+        elif (year and prize['year'] == year) or (category and prize['category'] == category):
+            print(f"{prize['year']} {prize['category']}")
+            for laureate in prize['laureates']:
+                print(laureate['firstname'], laureate.get('surname'))     
+            count +=1
+            print('')
+
     print(count, ' Total')
             
     
