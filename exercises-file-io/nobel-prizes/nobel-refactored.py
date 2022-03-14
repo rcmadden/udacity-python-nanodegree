@@ -17,24 +17,27 @@ def main(year, category):
         # skip if key not in dict
         if 'laureates' not in prize:
             continue
-        # limit results if no filters provided
-        if year == None and category == None:
-            while count < 10:
-                for laureate in prize['laureates']:
-                    print(laureate['firstname'], laureate['surname'])
-                count+=1
-                print('')
-        # filter on mathcing year or category and print results
+        # filter category and or year match skip the 2 cases below
         if category and prize['category'].lower() != category.lower():
             continue
         if year and prize['year'] != year:
             continue
+       
+        # limit results if no filters provided
+        if year == None and category == None:
+            if count < 10:
+                print(f"{prize['year']} {prize['category'].title()}")
+                for laureate in prize['laureates']:
+                    print(laureate['firstname'], laureate.get('surname'))
+                count+=1
+                print('')
 
-        print(f"{prize['year']} {prize['category'].title()}")
-        for laureate in prize['laureates']:
-            print(laureate['firstname'], laureate.get('surname'))     
-        count +=1
-        print('')
+        else:
+            print(f"{prize['year']} {prize['category'].title()}")
+            for laureate in prize['laureates']:
+                print(laureate['firstname'], laureate.get('surname'))     
+            count +=1
+            print('')
 
     print(count, ' Total')
             
