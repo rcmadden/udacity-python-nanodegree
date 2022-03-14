@@ -1,3 +1,4 @@
+from ast import Not
 import json
 from sys import stdout
 from textwrap import indent
@@ -31,64 +32,26 @@ def main(year, category):
         # skip if key not in dict
         if 'laureates' not in prize:
             continue
-        if prize['year'] == year and category == None:
-            print(f"{prize['year']} {prize['category']}")
-            for laureate in prize['laureates']:
-              # print(laureate.get('firstname'), laureate.get('surname'))
-                print(laureate['firstname'], laureate['surname'])     
-            count +=1
-            print('')
-        
-        elif prize['year'] == year and prize['category'] == category:
-            for laureate in prize['laureates']:
-                print(laureate['firstname'], laureate['surname'])
-            count +=1
-            print('')
 
-        elif year == None and prize['category'] == category:
-            for laureate in prize['laureates']:
-                print(laureate['firstname'], laureate['surname'])
-            count +=1
-            print('')
-
-        elif year == None and category == None:
+        if year == None and category == None:
             while count < 10:
                 for laureate in prize['laureates']:
                     print(laureate['firstname'], laureate['surname'])
                 count+=1
                 print('')
+        elif not(year == None and category == None):
+            # print the matching year and or category
+            if prize['year'] == year and (category == None or prize['category'] == category) or year == None and prize['category'] == category:
+                print(f"{prize['year']} {prize['category']}")
+                for laureate in prize['laureates']:
+                # print(laureate.get('firstname'), laureate.get('surname'))
+                    print(laureate['firstname'], laureate.get('surname'))     
+                count +=1
+                print('')
     
     print(count, ' Total')
             
     
-    # json_string = json.dumps(data)
-    # for prize in prizes:
-    #     # print(prize)
-    #     if 'laureates' not in prize:
-    #         continue
-    #     # i = 0
-    #     if prize['year'] != year:
-    #         continue
-    #         # print(prize['year'])
-    #         # print(prize['laureates'])
-    #     print(f"{prize['year']} Nobel Prize in {prize['category'].title()}")
-    #     for laureate in prize['laureates']:
-    #         firstname = laureate['firstname']
-    #         surname = laureate.get('surname', '')
-    #         print(firstname, surname)
-    #         # todo print options
-    #         print()
-    #     print('\n')
-            # print(prize['year'], prize['category'])
-            # for i in range(len(prize['laureates'])):
-            #     if prize.get(['laureates'][i]['surname']) in prize:
-            #         print(prize['laureates'][i]['firstname'], prize['laureates'][i]['surname'])
-            #     i += i
-            # print('\n')
-        # for each dict print each laureates firstname surname
-        # for laureate in prize['laureates']:
-        #     firstname = laureate['firstname']
-        #     surname = laureate['surname']
 
 if __name__ == '__main__':
     parser = helper.build_parser()
