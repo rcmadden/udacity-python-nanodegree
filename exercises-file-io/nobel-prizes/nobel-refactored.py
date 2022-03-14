@@ -1,7 +1,4 @@
-from ast import Not
 import json
-from sys import stdout
-from textwrap import indent
 import helper
 
 #def load_nobel_prizes(filename='../../data/prize.json'): # run frorm terminal
