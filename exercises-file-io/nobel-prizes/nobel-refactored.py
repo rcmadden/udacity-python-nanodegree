@@ -26,11 +26,17 @@ def main(year, category):
                 print('')
         # filter on mathcing year or category and print results
         if (year and prize['year'] == year) or (category and prize['category'].lower() == category.lower()):
-            print(f"{prize['year']} {prize['category'].title()}")
-            for laureate in prize['laureates']:
-                print(laureate['firstname'], laureate.get('surname'))     
-            count +=1
-            print('')
+            if category and prize['category'].lower() != category.lower():
+                continue
+            if year and prize['year'] != year:
+                continue
+
+            else:
+                print(f"{prize['year']} {prize['category'].title()}")
+                for laureate in prize['laureates']:
+                    print(laureate['firstname'], laureate.get('surname'))     
+                count +=1
+                print('')
 
     print(count, ' Total')
             
