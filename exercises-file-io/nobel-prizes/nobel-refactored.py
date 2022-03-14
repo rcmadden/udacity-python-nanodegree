@@ -14,16 +14,6 @@ def main(year, category):
     data = load_nobel_prizes()
     prizes = data['prizes']
     count = 0
-    laureateCount = 0
-
-    # list comprehension
-    '''for prize in prizes:
-        if prize['year'] == year:
-            prize_list.append(prize)
-    '''
-    # prize_list = [prize for prize in prizes if prize['year'] == year]
-    # json.dump(prize_list, stdout,indent=2)
-    # print(len(prize_list), ' Total')
 
     if category != None:
         category = category.lower()
@@ -32,16 +22,16 @@ def main(year, category):
         # skip if key not in dict
         if 'laureates' not in prize:
             continue
-
+        # limit results if no filters provided
         if year == None and category == None:
             while count < 10:
                 for laureate in prize['laureates']:
                     print(laureate['firstname'], laureate['surname'])
                 count+=1
                 print('')
-        # filter on mathcing year or category
-        elif (year and prize['year'] == year) or (category and prize['category'] == category):
-            print(f"{prize['year']} {prize['category']}")
+        # filter on mathcing year or category and print results
+        if (year and prize['year'] == year) or (category and prize['category'].lower() == category.lower()):
+            print(f"{prize['year']} {prize['category'].title()}")
             for laureate in prize['laureates']:
                 print(laureate['firstname'], laureate.get('surname'))     
             count +=1
@@ -50,7 +40,6 @@ def main(year, category):
     print(count, ' Total')
             
     
-
 if __name__ == '__main__':
     parser = helper.build_parser()
     args = parser.parse_args()
