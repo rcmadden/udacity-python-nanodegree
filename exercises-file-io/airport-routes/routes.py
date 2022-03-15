@@ -3,18 +3,26 @@ import json
 
 import helper
 
-def read_airlines(filename='airlines.dat'):
+# def read_airlines(filename='airlines.dat'): # from terminal
+def read_airlines(filename='exercises-file-io/airport-routes/airlines.dat'): # from vs code
+
     airlines = {}  # Map from code -> name
     with open(filename) as f:
         reader = csv.reader(f)
         for line in reader:
-            airlines[line[4]] = line[1]
-    return airlines
+            airlines[line[4]] = line[1] # key to value map
+    return airlines # dict of key value pairs
 
 
-def read_airports(filename='airports_partial.dat'):
+# def read_airports(filename='airports_partial.dat'):
+def read_airports(filename='exercises-file-io/airport-routes/airports_partial.dat'):
     # Return a map of code -> name
-    return {}
+    airports = {}
+    with open(filename) as f:
+        reader = csv.reader(f)
+        for line in reader:
+            airports[line[4]] = line[1] # airport name to icao code
+    return airports
 
 
 def read_routes(filename='routes_partial.dat'):
@@ -32,7 +40,9 @@ def rename_path(path, airports):
 
 def main(source, dest, max_segments):
     airlines = read_airlines()
+    print(len(airlines))
     airports = read_airports()
+    print(len(airports))
     routes = read_routes()
 
     paths = find_paths(routes, source, dest, max_segments)
