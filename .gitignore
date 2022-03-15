@@ -2,3 +2,5 @@
 *.pyc
 __pycache__
 .vscode/
+high-wages-with-header.csv
+high-wages.csv
