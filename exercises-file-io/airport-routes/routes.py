@@ -40,6 +40,13 @@ def read_routes(filename='exercises-file-io/airport-routes/routes_partial.dat'):
 
 def find_paths(routes, source, dest, max_segments):
     # Run a graph search algorithm to find paths from source to dest.
+    
+    # Start at the source airport. The only zero-length path is the empty path.
+    # For each path of length n, from 0 to 1 less than the total number of segments
+        # Find all neighbors of any airports reachable at the end of a path of length n
+        # These are the paths of length n + 1
+    # Return any and all paths of length <= n that end in the target airport.
+
     return {}
 
 def rename_path(path, airports):
