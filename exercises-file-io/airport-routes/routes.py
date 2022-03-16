@@ -25,9 +25,17 @@ def read_airports(filename='exercises-file-io/airport-routes/airports_partial.da
     return airports
 
 
-def read_routes(filename='routes_partial.dat'):
+def read_routes(filename='exercises-file-io/airport-routes/routes_partial.dat'):
     # Return a map from source -> list of destinations
-    return {}
+    routes = {}
+    with open(filename) as f:
+        reader = csv.reader(f)
+        for line in reader:
+            if routes.get(line[2]):
+                routes[line[2]] += [line[4]]
+            else:
+                routes[line[2]] = [line[4]]
+    return routes
 
 
 def find_paths(routes, source, dest, max_segments):
@@ -44,6 +52,7 @@ def main(source, dest, max_segments):
     airports = read_airports()
     print(len(airports))
     routes = read_routes()
+    print(routes)
 
     paths = find_paths(routes, source, dest, max_segments)
     output = {}  # Build a collection of output paths!
