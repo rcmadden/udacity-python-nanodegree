@@ -12,7 +12,7 @@ def read_airlines(filename='exercises-file-io/airport-routes/airlines.dat'): # f
         for line in reader:
             airlines[line[4]] = line[1] # key to value map
     return airlines # dict of key value pairs
-
+    # airlines = {'N/A': 'Private flight', 'GNL': '135 Airways', 'RNX': '1Time Airline'}
 
 # def read_airports(filename='airports_partial.dat'):
 def read_airports(filename='exercises-file-io/airport-routes/airports_partial.dat'):
@@ -23,8 +23,8 @@ def read_airports(filename='exercises-file-io/airport-routes/airports_partial.da
         for line in reader:
             airports[line[4]] = line[1] # airport name to icao code
     return airports
-
-
+    # {'LFR': 'La Fria Airport', '\\N': 'Oswego County Airport', 'MAR': 'La Chinita Internati...al Airport'}
+    
 def read_routes(filename='exercises-file-io/airport-routes/routes_partial.dat'):
     # Return a map from source -> list of destinations
     routes = {}
@@ -36,6 +36,14 @@ def read_routes(filename='exercises-file-io/airport-routes/routes_partial.dat'):
             else:
                 routes[line[2]] = [line[4]]
     return routes
+# len(routes['SFO']) 111
+# len(routes['SGN'])  57
+# {'SFO': ['GDL', 'HKG', 'HNL', 'IAD', 'IAH', 'ICN', 'IND', 'JFK', 'KIX', ...], 
+# 'SGF': ['DEN', 'ORD', 'DFW', 'ORD'], 
+# 'SGN': ['HKG', 'DME', 'BKK', 'BMV', 'CXR', 'DAD', 'DLI', 'HAN', 'HPH', ...], 
+# 'SGU': ['DEN'], 
+# 'SHD': ['IAD'],
+# 'BOS': ['LHR', 'BUF', 'CLT', 'CUN', 'DCA', 'DFW', 'JFK', 'LAX', 'LGA', 'MDT', 'MIA', 'ORD', 'PHL', 'PHX', ...]}
 
 
 def find_paths(routes, source, dest, max_segments):
